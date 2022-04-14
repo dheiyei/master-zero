@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhj.mapper.OperateLogMapper">
+
+    <resultMap id="OperateLogResultMap" type="com.lhj.model.entity.OperateLog">
+        <result property="logId" column="log_id"/>
+        <result property="title" column="title"/>
+        <result property="requestMethod" column="request_method"/>
+        <result property="requestUri" column="request_uri"/>
+        <result property="requestParams" column="request_params"/>
+        <result property="responseResult" column="response_result"/>
+        <result property="ipAddress" column="ip_address"/>
+        <result property="browser" column="browser"/>
+        <result property="operatingSystem" column="operating_system"/>
+        <result property="operateState" column="operate_state"/>
+        <result property="operateUser" column="operate_user"/>
+        <result property="operateTime" column="operate_time"/>
+        <result property="executeTime" column="execute_time"/>
+        <result property="exceptionMessage" column="exception_message"/>
+    </resultMap>
+
+    <sql id="SelectOperateLog">
+        SELECT
+            *
+        FROM
+            sys_operate_log
+    </sql>
+
+    <select id="selectOperateLogs" resultMap="OperateLogResultMap">
+        <include refid="SelectOperateLog"/>
+        <where>
+            <if test="title != null and title != ''">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+            <if test="requestMethod != null and requestMethod != ''">
+                AND request_method = #{requestMethod}
+            </if>
+            <if test="operateState != null and operateState != ''">
+                AND operate_state = #{operateState}
+            </if>
+            <if test="operateUser != null and operateUser != ''">
+                AND operate_user LIKE CONCAT('%', #{operateUser}, '%')
+            </if>
+            <if test="operateTimes != null and operateTimes.length > 0">
+                AND (operate_time &gt; #{operateTimes[0],javaType=java.time.LocalDateTime} AND operate_time &lt; #{operateTimes[1],javaType=java.time.LocalDateTime})
+            </if>
+        </where>
+    </select>
+
+    <select id="selectOperateLogById" resultMap="OperateLogResultMap">
+        <include refid="SelectOperateLog"/>
+        WHERE log_id = #{logId}
+    </select>
+
+    <insert id="createOperateLog">
+        INSERT INTO sys_operate_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">title,</if>
+            <if test="requestMethod != null and requestMethod != ''">request_method,</if>
+            <if test="requestUri != null and requestUri != ''">request_uri,</if>
+            <if test="requestParams != null and requestParams != ''">request_params,</if>
+            <if test="responseResult != null and responseResult != ''">response_result,</if>
+            <if test="ipAddress != null and ipAddress != ''">ip_address,</if>
+            <if test="browser != null and browser != ''">browser,</if>
+            <if test="operatingSystem != null and operatingSystem != ''">operating_system,</if>
+            <if test="operateState != null and operateState != ''">operate_state,</if>
+            <if test="operateUser != null and operateUser != ''">operate_user,</if>
+            <if test="operateTime != null">operate_time,</if>
+            <if test="executeTime != null">execute_time,</if>
+            <if test="exceptionMessage != null and exceptionMessage != ''">exception_message,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="requestMethod != null and requestMethod != ''">#{requestMethod},</if>
+            <if test="requestUri != null and requestUri != ''">#{requestUri},</if>
+            <if test="requestParams != null and requestParams != ''">#{requestParams},</if>
+            <if test="responseResult != null and responseResult != ''">#{responseResult},</if>
+            <if test="ipAddress != null and ipAddress != ''">#{ipAddress},</if>
+            <if test="browser != null and browser != ''">#{browser},</if>
+            <if test="operatingSystem != null and operatingSystem != ''">#{operatingSystem},</if>
+            <if test="operateState != null and operateState != ''">#{operateState},</if>
+            <if test="operateUser != null and operateUser != ''">#{operateUser},</if>
+            <if test="operateTime != null">#{operateTime},</if>
+            <if test="executeTime != null">#{executeTime},</if>
+            <if test="exceptionMessage != null and exceptionMessage != ''">#{exceptionMessage},</if>
+        </trim>
+    </insert>
+
+    <delete id="deleteOperateLogsByIds">
+        DELETE FROM sys_operate_log WHERE log_id IN
+        <foreach collection="logIds" item="logId" separator="," open="(" close=")">
+            #{logId}
+        </foreach>
+    </delete>
+
+</mapper>

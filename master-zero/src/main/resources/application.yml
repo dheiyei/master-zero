@@ -1,0 +1,39 @@
+server:
+  port: 8712
+  servlet:
+    context-path: /api
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/master-zero?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+  cache:
+    redis:
+      time-to-live: 3600000
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+secure:
+  ignore:
+    urls: # 配置白名单路径
+      - /auth/**
+      - /unit/tree
+      - /index.html
+      - /config.js
+      - /css/**
+      - /fonts/**
+      - /img/**
+      - /js/**
+      - /favicon.ico
+      - /demo.MP4
+dictionaries:
+  password: 123456
+  fuel-oil: 01-02-03-04-05-06-07

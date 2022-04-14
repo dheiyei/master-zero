@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhj.mapper.user.UserMapper">
+
+    <resultMap id="UserResultMap" type="com.lhj.model.entity.user.User">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="nickname" column="nickname"/>
+        <result property="enabled" column="enabled"/>
+        <result property="approved" column="approved"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+
+    <sql id="SelectUser">
+        SELECT
+        user_id, username, password, unit_id, nickname, enabled, approved, create_time, update_time
+        FROM
+        user
+    </sql>
+
+    <select id="selectUsers" resultMap="UserResultMap">
+        SELECT
+        u.user_id, u.username, u.password, u.unit_id, u.nickname, u.enabled, u.approved, u.create_time,
+        u.update_time
+        FROM
+        user u
+        <where>
+            <if test="username != null and username != ''">
+                AND u.username LIKE CONCAT('%', #{username}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectUserById" resultMap="UserResultMap">
+        <include refid="SelectUser"/>
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectByUsername" resultMap="UserResultMap">
+        <include refid="SelectUser"/>
+        WHERE username = #{username}
+    </select>
+
+    <insert id="createUser" keyProperty="userId" useGeneratedKeys="true">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">username,</if>
+            <if test="password != null and password != ''">password,</if>
+            <if test="nickname != null and nickname != ''">nickname,</if>
+            <if test="enabled != null">enabled,</if>
+            <if test="approved != null">approved,</if>
+            create_time,
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">#{username},</if>
+            <if test="password != null and password != ''">#{password},</if>
+            <if test="nickname != null and nickname != ''">#{nickname},</if>
+            <if test="enabled != null">#{enabled},</if>
+            <if test="approved != null">#{approved},</if>
+            SYSDATE(),
+        </trim>
+    </insert>
+
+    <update id="updateUser">
+        UPDATE user
+        <set>
+            <trim suffixOverrides=",">
+                <if test="username != null and username != ''">username = #{username},</if>
+                <if test="password != null and password != ''">password = #{password},</if>
+                <if test="nickname != null and nickname != ''">nickname = #{nickname},</if>
+                <if test="enabled != null">enabled = #{enabled},</if>
+                <if test="approved != null">approved = #{approved},</if>
+                update_time = SYSDATE(),
+            </trim>
+        </set>
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="deleteUsersByIds">
+        DELETE FROM user WHERE user_id IN
+        <foreach collection="userIds" item="userId" separator="," open="(" close=")">
+            #{userId}
+        </foreach>
+    </delete>
+
+    <update id="updatePassword">
+        UPDATE user SET password = #{newPassword}
+        WHERE user_id = #{userId}
+    </update>
+</mapper>

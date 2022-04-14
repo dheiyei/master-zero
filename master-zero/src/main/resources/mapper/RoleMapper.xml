@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhj.mapper.role.RoleMapper">
+
+    <resultMap id="RoleResultMap" type="com.lhj.model.entity.role.Role">
+        <id property="roleId" column="role_id"/>
+        <result property="roleKey" column="role_key"/>
+        <result property="roleName" column="role_name"/>
+        <result property="description" column="description"/>
+        <result property="dataScope" column="data_scope"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="SelectRole">
+        SELECT
+        role_id, role_key, role_name, description, data_scope, create_time, update_time
+        FROM
+        role
+    </sql>
+
+    <select id="selectRolesByUserId" resultMap="RoleResultMap">
+        SELECT
+            r.*
+        FROM
+            role r
+            LEFT JOIN user_role ur ON r.role_id = ur.role_id
+        WHERE
+            ur.user_id = #{userId}
+    </select>
+
+    <select id="selectRoles" resultMap="RoleResultMap">
+        <include refid="SelectRole"/>
+        <where>
+            <if test="roleName != null and roleName != ''">
+                AND role_name LIKE CONCAT('%', #{roleName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectRoleById" resultMap="RoleResultMap">
+        <include refid="SelectRole"/>
+        WHERE
+        role_id = #{roleId}
+    </select>
+
+    <select id="selectByRoleKey" resultMap="RoleResultMap">
+        <include refid="SelectRole"/>
+        WHERE
+        role_key = #{roleKey}
+    </select>
+
+    <insert id="createRole" keyProperty="roleId" useGeneratedKeys="true">
+        INSERT INTO role
+        (
+        <if test="roleKey != null and roleKey != ''">role_key,</if>
+        <if test="roleName != null and roleName != ''">role_name,</if>
+        <if test="description != null and description != ''">description,</if>
+        <if test="dataScope != null and dataScope != ''">data_scope,</if>
+        create_time
+        )
+        VALUES
+        (
+        <if test="roleKey != null and roleKey != ''">#{roleKey},</if>
+        <if test="roleName != null and roleName != ''">#{roleName},</if>
+        <if test="description != null and description != ''">#{description},</if>
+        <if test="dataScope != null and dataScope != ''">#{dataScope},</if>
+        SYSDATE()
+        )
+    </insert>
+
+    <update id="updateRole">
+        UPDATE role
+        <set>
+            <if test="roleKey != null and roleKey != ''">role_key = #{roleKey},</if>
+            <if test="roleName != null and roleName != ''">role_name = #{roleName},</if>
+            <if test="description != null and description != ''">description = #{description},</if>
+            <if test="dataScope != null and dataScope != ''">data_scope = #{dataScope},</if>
+            update_time = SYSDATE()
+        </set>
+        WHERE role_id = #{roleId}
+    </update>
+
+    <delete id="deleteRolesByIds">
+        DELETE FROM role WHERE role_id IN
+        <foreach collection="roleIds" item="roleId" separator="," open="(" close=")">
+            #{roleId}
+        </foreach>
+    </delete>
+
+</mapper>

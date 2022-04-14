@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhj.mapper.dict.DictMapper">
+
+    <resultMap id="DictResultMap" type="com.lhj.model.entity.dict.Dict">
+        <result property="dictId" column="dict_id"/>
+        <result property="dictType" column="dict_type"/>
+        <result property="dictName" column="dict_name"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="SelectDict">
+        SELECT
+        *
+        FROM
+        sys_dict
+    </sql>
+
+    <select id="selectDicts" resultMap="DictResultMap">
+        <include refid="SelectDict"/>
+    </select>
+
+    <select id="selectDictById" resultMap="DictResultMap">
+        <include refid="SelectDict"/>
+        WHERE dict_id = #{dictId}
+    </select>
+
+    <select id="selectDictByType" resultMap="DictResultMap">
+        <include refid="SelectDict"/>
+        WHERE dict_type = #{dictType}
+    </select>
+
+    <select id="selectDictByName" resultMap="DictResultMap">
+        <include refid="SelectDict"/>
+        WHERE dict_name = #{dictName}
+    </select>
+
+    <insert id="createDict">
+        INSERT INTO sys_dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dictType != null and dictType != ''">dict_type,</if>
+            <if test="dictName != null and dictName != ''">dict_name,</if>
+            <if test="remark != null and remark != ''">remark,</if>
+            create_time,
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dictType != null and dictType != ''">#{dictType},</if>
+            <if test="dictName != null and dictName != ''">#{dictName},</if>
+            <if test="remark != null and remark != ''">#{remark},</if>
+            SYSDATE(),
+        </trim>
+    </insert>
+
+    <update id="updateDict">
+        UPDATE sys_dict
+        <set>
+            <trim suffixOverrides=",">
+                <if test="dictType != null and dictType != ''">dict_type = #{dictType},</if>
+                <if test="dictName != null and dictName != ''">dict_name = #{dictName},</if>
+                <if test="remark != null and remark != ''">remark = #{remark},</if>
+                update_time = SYSDATE(),
+            </trim>
+        </set>
+        WHERE dict_id = #{dictId}
+    </update>
+
+    <delete id="deleteDictsByIds">
+        DELETE FROM sys_dict WHERE dict_id IN
+        <foreach collection="dictIds" item="dictId" separator="," open="(" close=")">
+            #{dictId}
+        </foreach>
+    </delete>
+
+</mapper>
