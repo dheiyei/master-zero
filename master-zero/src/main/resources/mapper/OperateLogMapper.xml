@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lhj.mapper.OperateLogMapper">
+<mapper namespace="com.koke.mapper.OperateLogMapper">
 
-    <resultMap id="OperateLogResultMap" type="com.lhj.model.entity.OperateLog">
+    <resultMap id="OperateLogResultMap" type="com.koke.model.entity.OperateLog">
         <result property="logId" column="log_id"/>
         <result property="title" column="title"/>
         <result property="requestMethod" column="request_method"/>
