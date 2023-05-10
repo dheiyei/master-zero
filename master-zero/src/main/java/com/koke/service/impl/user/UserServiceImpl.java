@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(UserDTO userDTO) {
         Assert.isTrue(checkUsernameUnique(userDTO), Constants.USERNAME_EXISTED);
+        userMapper.createUser(userDTO);
         //添加用户角色
         userRoleService.createUserRole(userDTO.getUserId(), userDTO.getRoleIds());
     }

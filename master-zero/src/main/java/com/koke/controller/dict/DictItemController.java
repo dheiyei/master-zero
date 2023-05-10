@@ -32,7 +32,7 @@ public class DictItemController {
     }
 
     @GetMapping("/dictType")
-    public ResultInfo<List<DictItem>> getDictItemsByDictType(@RequestParam("dictType") String dictType) {
+        public ResultInfo<List<DictItem>> getDictItemsByDictType(@RequestParam("dictType") String dictType) {
         List<DictItem> dictItems = dictItemService.selectDictItemsByDictType(dictType);
         return ResultInfo.success(dictItems);
     }

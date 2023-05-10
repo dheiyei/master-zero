@@ -35,14 +35,12 @@ public class UserController {
     private final UserRoleService userRoleService;
 
     @EnablePage
-    @PreAuthorize("hasAnyAuthority('admin:user:read')")
     @GetMapping
     public ResultInfo<List<User>> getUsers(User user) {
         List<User> users = userService.selectUsers(user);
         return ResultInfo.success(users);
     }
 
-    @PreAuthorize("hasAnyAuthority('admin:user:read')")
     @GetMapping("/{userId}")
     public ResultInfo<UserVO> getUserById(@PathVariable("userId") Long userId) {
         List<Long> roleIds = userRoleService.selectUserRoleByUserId(userId).stream().map(UserRole::getRoleId).collect(Collectors.toList());
@@ -52,7 +50,6 @@ public class UserController {
         return ResultInfo.success(userVO);
     }
 
-    @PreAuthorize("hasAnyAuthority('admin:user:create')")
     @PostMapping
     public ResultInfo<Void> createUser(@Validated(CreateGroup.class) @RequestBody UserDTO userDTO) {
         userService.createUser(userDTO);
