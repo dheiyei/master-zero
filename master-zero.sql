@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : MySQL5.7
+ Source Server         : 本地-MySQL
  Source Server Type    : MySQL
- Source Server Version : 50727
+ Source Server Version : 80030
  Source Host           : localhost:3306
- Source Schema         : master-zero
+ Source Schema         : master_zero
 
  Target Server Type    : MySQL
- Target Server Version : 50727
+ Target Server Version : 80030
  File Encoding         : 65001
 
- Date: 14/04/2022 17:25:05
+ Date: 10/05/2023 17:40:26
 */
 
 SET NAMES utf8mb4;
@@ -22,19 +22,19 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu`  (
-  `menu_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '菜单id',
+  `menu_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜单id',
   `menu_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '菜单名称',
-  `parent_id` bigint(20) NULL DEFAULT NULL COMMENT '父菜单id',
+  `parent_id` bigint NULL DEFAULT NULL COMMENT '父菜单id',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '菜单url',
   `permission` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '权限标识',
   `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '类型 0：目录 1：菜单 2：按钮',
-  `sort` int(11) NOT NULL DEFAULT 0 COMMENT '排序',
+  `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `icon` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图标',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '删除状态 0：存在 1：删除',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 60 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menu
@@ -43,96 +43,57 @@ INSERT INTO `menu` VALUES (1, '系统设置', 0, NULL, 'admin:user:read', '0', 1
 INSERT INTO `menu` VALUES (3, '用户管理', 1, '/admin/user', 'admin:user:delete', '1', 4, 'el-icon-user', '0', NULL, '2021-09-24 09:43:11');
 INSERT INTO `menu` VALUES (9, '角色管理', 1, '/admin/role', NULL, '1', 2, 'el-icon-bank-card', '0', NULL, '2021-09-23 17:53:07');
 INSERT INTO `menu` VALUES (10, '菜单管理', 1, '/admin/menu', NULL, '1', 1, 'el-icon-s-operation', '0', NULL, '2021-09-23 17:53:48');
-INSERT INTO `menu` VALUES (36, '字典管理', 0, '/admin/dict', NULL, '1', 8, 'el-icon-collection', '0', '2021-09-09 16:30:57', '2022-02-22 16:42:08');
-INSERT INTO `menu` VALUES (37, '通知管理', 0, '/notification', NULL, '1', 10, 'el-icon-postcard', '0', '2021-09-09 16:32:31', '2022-01-27 15:39:18');
+INSERT INTO `menu` VALUES (36, '字典管理', 1, '/admin/dict', NULL, '1', 8, 'el-icon-collection', '0', '2021-09-09 16:30:57', '2023-04-28 10:57:01');
+INSERT INTO `menu` VALUES (37, '通知管理', 0, '/notification', NULL, '1', 10, 'el-icon-postcard', '1', '2021-09-09 16:32:31', '2022-01-27 15:39:18');
 INSERT INTO `menu` VALUES (43, '操作日志', 1, '/admin/operateLog', NULL, '1', 1, 'el-icon-user', '0', '2021-09-26 10:56:58', '2021-09-26 10:57:13');
+INSERT INTO `menu` VALUES (60, '打卡管理', 0, NULL, NULL, '0', 1, 'el-icon-bank-card', '0', '2023-04-28 10:57:22', '2023-04-28 10:58:41');
+INSERT INTO `menu` VALUES (61, '打卡记录', 60, '/clock/clockIn', NULL, '1', 1, 'el-icon-bank-card', '0', '2023-04-28 10:58:33', '2023-04-28 10:58:46');
 
 -- ----------------------------
 -- Table structure for role
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role`  (
-  `role_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色id',
+  `role_id` bigint NOT NULL AUTO_INCREMENT COMMENT '角色id',
   `role_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '角色标识',
   `role_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '角色名称',
   `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '角色描述',
   `data_scope` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '数据范围',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`role_id`) USING BTREE,
   UNIQUE INDEX `uk_role_key`(`role_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES (1, 'ROLE_ADMIN', '系统管理员', '拥有系统最高权限', '1', NULL, '2021-08-30 16:50:27');
 INSERT INTO `role` VALUES (2, 'ROLE_USER', '普通用户', '普通用户', '2', NULL, '2021-10-21 15:58:37');
-INSERT INTO `role` VALUES (4, 'ROLE_ACCOUNTING_END', '核算端', '核算端权限', NULL, '2021-10-18 11:32:52', '2021-10-18 11:33:17');
-INSERT INTO `role` VALUES (5, 'ROLE_NON_ACCOUNTING_END', '非核算', '非核算端', NULL, '2021-10-18 11:37:49', '2021-10-18 14:58:00');
-INSERT INTO `role` VALUES (6, 'ROLE_HEADQUARTERS', '总部', '总部端', NULL, '2021-10-18 14:54:55', '2021-10-18 14:57:55');
 
 -- ----------------------------
 -- Table structure for role_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `role_menu`;
 CREATE TABLE `role_menu`  (
-  `role_id` bigint(20) NOT NULL COMMENT '角色id',
-  `menu_id` bigint(20) NOT NULL COMMENT '菜单id',
+  `role_id` bigint NOT NULL COMMENT '角色id',
+  `menu_id` bigint NOT NULL COMMENT '菜单id',
   PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色菜单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_menu
 -- ----------------------------
-INSERT INTO `role_menu` VALUES (4, 35);
-INSERT INTO `role_menu` VALUES (4, 39);
-INSERT INTO `role_menu` VALUES (4, 40);
-INSERT INTO `role_menu` VALUES (4, 41);
-INSERT INTO `role_menu` VALUES (4, 42);
-INSERT INTO `role_menu` VALUES (4, 44);
-INSERT INTO `role_menu` VALUES (4, 56);
-INSERT INTO `role_menu` VALUES (4, 57);
-INSERT INTO `role_menu` VALUES (4, 58);
-INSERT INTO `role_menu` VALUES (4, 59);
-INSERT INTO `role_menu` VALUES (5, 1);
-INSERT INTO `role_menu` VALUES (5, 40);
-INSERT INTO `role_menu` VALUES (5, 41);
-INSERT INTO `role_menu` VALUES (5, 43);
-INSERT INTO `role_menu` VALUES (5, 46);
-INSERT INTO `role_menu` VALUES (5, 47);
-INSERT INTO `role_menu` VALUES (5, 48);
-INSERT INTO `role_menu` VALUES (5, 50);
-INSERT INTO `role_menu` VALUES (5, 51);
-INSERT INTO `role_menu` VALUES (5, 52);
-INSERT INTO `role_menu` VALUES (5, 55);
-INSERT INTO `role_menu` VALUES (6, 1);
-INSERT INTO `role_menu` VALUES (6, 3);
-INSERT INTO `role_menu` VALUES (6, 9);
-INSERT INTO `role_menu` VALUES (6, 10);
-INSERT INTO `role_menu` VALUES (6, 34);
-INSERT INTO `role_menu` VALUES (6, 35);
-INSERT INTO `role_menu` VALUES (6, 36);
-INSERT INTO `role_menu` VALUES (6, 40);
-INSERT INTO `role_menu` VALUES (6, 41);
-INSERT INTO `role_menu` VALUES (6, 42);
-INSERT INTO `role_menu` VALUES (6, 43);
-INSERT INTO `role_menu` VALUES (6, 44);
-INSERT INTO `role_menu` VALUES (6, 46);
-INSERT INTO `role_menu` VALUES (6, 47);
-INSERT INTO `role_menu` VALUES (6, 48);
-INSERT INTO `role_menu` VALUES (6, 50);
-INSERT INTO `role_menu` VALUES (6, 51);
-INSERT INTO `role_menu` VALUES (6, 52);
-INSERT INTO `role_menu` VALUES (6, 55);
+INSERT INTO `role_menu` VALUES (2, 60);
+INSERT INTO `role_menu` VALUES (2, 61);
 
 -- ----------------------------
 -- Table structure for role_unit
 -- ----------------------------
 DROP TABLE IF EXISTS `role_unit`;
 CREATE TABLE `role_unit`  (
-  `role_id` bigint(20) NOT NULL COMMENT '角色id',
-  `unit_id` bigint(20) NOT NULL COMMENT '单位id',
+  `role_id` bigint NOT NULL COMMENT '角色id',
+  `unit_id` bigint NOT NULL COMMENT '单位id',
   PRIMARY KEY (`role_id`, `unit_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色单位' ROW_FORMAT = Dynamic;
 
@@ -149,55 +110,48 @@ INSERT INTO `role_unit` VALUES (2, 4);
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict`;
 CREATE TABLE `sys_dict`  (
-  `dict_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典id',
+  `dict_id` bigint NOT NULL AUTO_INCREMENT COMMENT '字典id',
   `dict_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '字典类型',
   `dict_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '字典名称',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`dict_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict
 -- ----------------------------
-INSERT INTO `sys_dict` VALUES (7, '余油', 'Surplus_Oil', '切勿改动', '2021-09-13 09:01:18', '2021-09-13 09:01:32');
-INSERT INTO `sys_dict` VALUES (8, '单位导入配置', 'Unit_Key', '单位Sql导入配置', '2021-11-22 16:58:50', NULL);
-INSERT INTO `sys_dict` VALUES (10, '油料导入配置', 'Oil_Key', '油料Sql导入配置', '2021-11-24 11:10:05', '2021-11-24 11:10:19');
+INSERT INTO `sys_dict` VALUES (11, 'Clock-In-State', '打卡记录状态', ' ', '2023-04-28 11:52:17', '2023-04-28 12:24:22');
 
 -- ----------------------------
 -- Table structure for sys_dict_item
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict_item`;
 CREATE TABLE `sys_dict_item`  (
-  `dict_item_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典数据id',
-  `dict_id` bigint(20) NULL DEFAULT NULL COMMENT '字典id',
+  `dict_item_id` bigint NOT NULL AUTO_INCREMENT COMMENT '字典数据id',
+  `dict_id` bigint NULL DEFAULT NULL COMMENT '字典id',
   `dict_label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '字典标签',
   `dict_value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '字典数据',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `sort` int NULL DEFAULT NULL COMMENT '排序',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`dict_item_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典项' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典项' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict_item
 -- ----------------------------
-INSERT INTO `sys_dict_item` VALUES (9, 7, '管线余油', '1', NULL, 1, '2021-09-13 09:02:28', '2021-09-16 16:20:51');
-INSERT INTO `sys_dict_item` VALUES (10, 7, '槽车余油', '2', NULL, 1, '2021-09-13 09:02:44', '2021-09-16 16:20:53');
-INSERT INTO `sys_dict_item` VALUES (11, 7, '其他余油', '3', NULL, 1, '2021-09-13 09:02:52', '2021-09-16 16:20:54');
-INSERT INTO `sys_dict_item` VALUES (12, 8, 'unit_code', 'DWDM', '单位代码', 1, '2021-11-23 16:20:43', '2022-01-20 16:38:50');
-INSERT INTO `sys_dict_item` VALUES (14, 8, 'unit_name', 'BDFH', '单位名称', 1, '2021-11-23 16:24:23', '2022-01-20 16:38:55');
-INSERT INTO `sys_dict_item` VALUES (15, 10, 'oil_code', 'DM', '油料代码', 1, '2021-11-24 11:11:11', '2022-01-19 19:57:12');
-INSERT INTO `sys_dict_item` VALUES (16, 10, 'oil_name', 'MC', '油料名称', 1, '2021-11-24 11:11:30', '2022-01-19 19:57:17');
+INSERT INTO `sys_dict_item` VALUES (17, 11, '未打卡', '0', 'danger', 1, '2023-04-28 11:56:11', '2023-04-29 17:18:21');
+INSERT INTO `sys_dict_item` VALUES (18, 11, '已打卡', '1', 'success', 1, '2023-04-28 11:56:27', '2023-04-29 17:18:05');
 
 -- ----------------------------
 -- Table structure for sys_operate_log
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_operate_log`;
 CREATE TABLE `sys_operate_log`  (
-  `log_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '日志id',
+  `log_id` bigint NOT NULL AUTO_INCREMENT COMMENT '日志id',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '日志标题',
   `request_method` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求方式',
   `request_uri` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求URI',
@@ -208,11 +162,11 @@ CREATE TABLE `sys_operate_log`  (
   `operating_system` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '操作系统',
   `operate_state` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '操作状态',
   `operate_user` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '操作用户',
-  `operate_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
-  `execute_time` bigint(20) NULL DEFAULT NULL COMMENT '执行耗时',
+  `operate_time` datetime NULL DEFAULT NULL COMMENT '操作时间',
+  `execute_time` bigint NULL DEFAULT NULL COMMENT '执行耗时',
   `exception_message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '异常信息',
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1521 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1528 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_operate_log
@@ -432,21 +386,28 @@ INSERT INTO `sys_operate_log` VALUES (1517, '登录成功', 'POST', '/api/auth/l
 INSERT INTO `sys_operate_log` VALUES (1518, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 99.0.4844.84', 'Windows 10.0', '0', '102', '2022-04-14 17:01:02', 0, NULL);
 INSERT INTO `sys_operate_log` VALUES (1519, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 99.0.4844.84', 'Windows 10.0', '0', '102', '2022-04-14 17:10:01', 0, NULL);
 INSERT INTO `sys_operate_log` VALUES (1520, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 99.0.4844.84', 'Windows 10.0', '0', '102', '2022-04-14 17:24:38', 0, NULL);
+INSERT INTO `sys_operate_log` VALUES (1521, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '0', '102', '2023-04-26 13:34:27', 0, NULL);
+INSERT INTO `sys_operate_log` VALUES (1522, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '0', '102', '2023-04-28 10:55:51', 0, NULL);
+INSERT INTO `sys_operate_log` VALUES (1523, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '0', '102', '2023-04-28 10:56:34', 0, NULL);
+INSERT INTO `sys_operate_log` VALUES (1524, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '192.168.214.179', 'Chrome 87.0.4280.141', 'Android 11', '0', '102', '2023-04-28 11:33:00', 0, NULL);
+INSERT INTO `sys_operate_log` VALUES (1525, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '0', '102', '2023-04-29 15:54:46', 0, NULL);
+INSERT INTO `sys_operate_log` VALUES (1526, '登录失败', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '1', '102', '2023-04-29 20:52:43', 0, '用户名或密码错误');
+INSERT INTO `sys_operate_log` VALUES (1527, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '0', '102', '2023-04-30 10:43:25', 0, NULL);
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名',
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '密码',
-  `unit_id` bigint(20) NULL DEFAULT NULL COMMENT '单位id',
+  `unit_id` bigint NULL DEFAULT NULL COMMENT '单位id',
   `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '昵称',
-  `enabled` tinyint(4) NULL DEFAULT NULL COMMENT '是否可用',
-  `approved` tinyint(4) NULL DEFAULT NULL COMMENT '是否审批',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `enabled` tinyint NULL DEFAULT NULL COMMENT '是否可用',
+  `approved` tinyint NULL DEFAULT NULL COMMENT '是否审批',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`user_id`) USING BTREE,
   UNIQUE INDEX `uk_username`(`username`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户' ROW_FORMAT = Dynamic;
@@ -454,15 +415,15 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (53, '102', '{bcrypt}$2a$10$.ElI11Xn9us.YHshzgQun.3KOsv7xUh/80fFxXwn6LUvB2uFsTSu6', 1, '海军', 1, 1, '2021-09-23 14:51:25', '2021-12-20 09:57:16');
+INSERT INTO `user` VALUES (53, '102', '{bcrypt}$2a$10$.ElI11Xn9us.YHshzgQun.3KOsv7xUh/80fFxXwn6LUvB2uFsTSu6', 1, '超级管理员', 1, 1, '2021-09-23 14:51:25', '2021-12-20 09:57:16');
 
 -- ----------------------------
 -- Table structure for user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role`  (
-  `user_id` bigint(20) NOT NULL COMMENT '用户id',
-  `role_id` bigint(20) NOT NULL COMMENT '角色id',
+  `user_id` bigint NOT NULL COMMENT '用户id',
+  `role_id` bigint NOT NULL COMMENT '角色id',
   PRIMARY KEY (`user_id`, `role_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户角色' ROW_FORMAT = Dynamic;
 
