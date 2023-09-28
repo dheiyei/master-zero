@@ -4,14 +4,14 @@
  Source Server         : 本地-MySQL
  Source Server Type    : MySQL
  Source Server Version : 80030
- Source Host           : localhost:3306
+ Source Host           : 127.0.0.1:3306
  Source Schema         : master_zero
 
  Target Server Type    : MySQL
  Target Server Version : 80030
  File Encoding         : 65001
 
- Date: 10/05/2023 17:40:26
+ Date: 28/09/2023 22:42:47
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `menu`  (
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menu
@@ -46,8 +46,8 @@ INSERT INTO `menu` VALUES (10, '菜单管理', 1, '/admin/menu', NULL, '1', 1, '
 INSERT INTO `menu` VALUES (36, '字典管理', 1, '/admin/dict', NULL, '1', 8, 'el-icon-collection', '0', '2021-09-09 16:30:57', '2023-04-28 10:57:01');
 INSERT INTO `menu` VALUES (37, '通知管理', 0, '/notification', NULL, '1', 10, 'el-icon-postcard', '1', '2021-09-09 16:32:31', '2022-01-27 15:39:18');
 INSERT INTO `menu` VALUES (43, '操作日志', 1, '/admin/operateLog', NULL, '1', 1, 'el-icon-user', '0', '2021-09-26 10:56:58', '2021-09-26 10:57:13');
-INSERT INTO `menu` VALUES (60, '打卡管理', 0, NULL, NULL, '0', 1, 'el-icon-bank-card', '0', '2023-04-28 10:57:22', '2023-04-28 10:58:41');
-INSERT INTO `menu` VALUES (61, '打卡记录', 60, '/clock/clockIn', NULL, '1', 1, 'el-icon-bank-card', '0', '2023-04-28 10:58:33', '2023-04-28 10:58:46');
+INSERT INTO `menu` VALUES (60, '打卡管理', 0, NULL, NULL, '0', 1, 'el-icon-bank-card', '1', '2023-04-28 10:57:22', '2023-04-28 10:58:41');
+INSERT INTO `menu` VALUES (61, '打卡记录', 60, '/clock/clockIn', NULL, '1', 1, 'el-icon-bank-card', '1', '2023-04-28 10:58:33', '2023-04-28 10:58:46');
 
 -- ----------------------------
 -- Table structure for role
@@ -63,7 +63,7 @@ CREATE TABLE `role`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`role_id`) USING BTREE,
   UNIQUE INDEX `uk_role_key`(`role_key`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role
@@ -117,12 +117,7 @@ CREATE TABLE `sys_dict`  (
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`dict_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sys_dict
--- ----------------------------
-INSERT INTO `sys_dict` VALUES (11, 'Clock-In-State', '打卡记录状态', ' ', '2023-04-28 11:52:17', '2023-04-28 12:24:22');
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_dict_item
@@ -138,13 +133,7 @@ CREATE TABLE `sys_dict_item`  (
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`dict_item_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典项' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sys_dict_item
--- ----------------------------
-INSERT INTO `sys_dict_item` VALUES (17, 11, '未打卡', '0', 'danger', 1, '2023-04-28 11:56:11', '2023-04-29 17:18:21');
-INSERT INTO `sys_dict_item` VALUES (18, 11, '已打卡', '1', 'success', 1, '2023-04-28 11:56:27', '2023-04-29 17:18:05');
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典项' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_operate_log
@@ -166,7 +155,7 @@ CREATE TABLE `sys_operate_log`  (
   `execute_time` bigint NULL DEFAULT NULL COMMENT '执行耗时',
   `exception_message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '异常信息',
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1528 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1529 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_operate_log
@@ -393,6 +382,8 @@ INSERT INTO `sys_operate_log` VALUES (1524, '登录成功', 'POST', '/api/auth/l
 INSERT INTO `sys_operate_log` VALUES (1525, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '0', '102', '2023-04-29 15:54:46', 0, NULL);
 INSERT INTO `sys_operate_log` VALUES (1526, '登录失败', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '1', '102', '2023-04-29 20:52:43', 0, '用户名或密码错误');
 INSERT INTO `sys_operate_log` VALUES (1527, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 112.0.0.0', 'Windows 10.0', '0', '102', '2023-04-30 10:43:25', 0, NULL);
+INSERT INTO `sys_operate_log` VALUES (1528, '登录失败', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 117.0.0.0', 'Windows 10.0', '1', 'admin', '2023-09-28 22:37:22', 0, '用户名或密码错误');
+INSERT INTO `sys_operate_log` VALUES (1529, '登录成功', 'POST', '/api/auth/login', NULL, NULL, '127.0.0.1', 'Chrome 117.0.0.0', 'Windows 10.0', '0', '102', '2023-09-28 22:38:29', 0, NULL);
 
 -- ----------------------------
 -- Table structure for user
@@ -415,7 +406,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (53, '102', '{bcrypt}$2a$10$.ElI11Xn9us.YHshzgQun.3KOsv7xUh/80fFxXwn6LUvB2uFsTSu6', 1, '超级管理员', 1, 1, '2021-09-23 14:51:25', '2021-12-20 09:57:16');
+INSERT INTO `user` VALUES (53, 'admin', '{bcrypt}$2a$10$.ElI11Xn9us.YHshzgQun.3KOsv7xUh/80fFxXwn6LUvB2uFsTSu6', 1, '超级管理员', 1, 1, '2021-09-23 14:51:25', '2023-09-28 22:39:01');
 
 -- ----------------------------
 -- Table structure for user_role
