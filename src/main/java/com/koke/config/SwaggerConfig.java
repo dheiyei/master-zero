@@ -36,7 +36,7 @@ public class SwaggerConfig {
                 // select()函数返回一个ApiSelectorBuilder实例,用来控制接口被swagger做成文档
                 .select()
                 // 用于指定扫描哪个包下的接口
-                .apis(RequestHandlerSelectors.basePackage("com.tzxx.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.koke.controller"))
                 // 选择所有的API,如果你想只为部分API生成文档，可以配置这里
                 .paths(PathSelectors.any())
                 .build()

@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author koke
  */
 @SpringBootApplication
-public class WishesMusicApplication {
+public class MasterZeroApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WishesMusicApplication.class, args);
+        SpringApplication.run(MasterZeroApplication.class, args);
     }
 
 }

@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f4e77ab7-6d21-422e-8ecf-7dafba3b83e0" name="Changes" comment="重新更新9-28">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/koke/WishesMusicApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/koke/MasterZeroApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/koke/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/koke/config/SwaggerConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WishesMusic/wishes-music" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15222222" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -47,7 +49,7 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="Spring Boot.ReportingSystemApplication">
+  <component name="RunManager" selected="Spring Boot.WishesMusicApplication">
     <configuration name="ReportingSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="master-zero" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.koke.ReportingSystemApplication" />
@@ -57,7 +59,7 @@
     </configuration>
     <configuration name="WishesMusicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="master-zero" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.koke.WishesMusicApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.koke.MasterZeroApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -75,6 +77,7 @@
       <workItem from="1695911482330" duration="699000" />
       <workItem from="1695912302027" duration="733000" />
       <workItem from="1695913295283" duration="29000" />
+      <workItem from="1695916996723" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="重新更新">
       <created>1683711450729</created>
@@ -104,7 +107,21 @@
       <option name="project" value="LOCAL" />
       <updated>1695912421894</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="重新更新9-28">
+      <created>1695917035993</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1695917035993</updated>
+    </task>
+    <task id="LOCAL-00006" summary="重新更新9-28">
+      <created>1695917103599</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1695917103599</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
