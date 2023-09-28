@@ -1,6 +1,6 @@
 package com.koke.log.event;
 
-import com.koke.model.entity.OperateLog;
+import com.koke.model.entity.sys.OperateLog;
 import org.springframework.context.ApplicationEvent;
 
 /**

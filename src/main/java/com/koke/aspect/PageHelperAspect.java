@@ -3,8 +3,8 @@ package com.koke.aspect;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.koke.annotation.EnablePage;
-import com.koke.model.ResultInfo;
+import com.koke.aspect.annotation.EnablePage;
+import com.koke.model.entity.common.ResultInfo;
 import com.koke.utils.WebUtil;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +17,10 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * 分页查询注入
+ * @author koke
+ */
 @Aspect
 @Component
 public class PageHelperAspect {
@@ -28,7 +32,7 @@ public class PageHelperAspect {
      */
     public static String SQL_PATTERN = "[a-zA-Z0-9_\\ \\,\\.]+";
 
-    @Pointcut("@annotation(com.koke.annotation.EnablePage)")
+    @Pointcut("@annotation(com.koke.aspect.annotation.EnablePage)")
     public void pointcut() {
     }
 

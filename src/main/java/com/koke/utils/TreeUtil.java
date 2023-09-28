@@ -1,8 +1,8 @@
 package com.koke.utils;
 
-import com.koke.model.common.Tree;
-import com.koke.model.common.TreeNode;
-import com.koke.model.common.TreeNodeConfig;
+import com.koke.model.entity.common.Tree;
+import com.koke.model.entity.common.TreeNode;
+import com.koke.model.entity.common.TreeNodeConfig;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.util.CollectionUtils;

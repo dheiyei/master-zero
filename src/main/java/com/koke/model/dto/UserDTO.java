@@ -1,8 +1,6 @@
 package com.koke.model.dto;
 
-import com.koke.model.entity.user.User;
-import com.koke.valid.CreateGroup;
-import com.koke.valid.UpdateGroup;
+import com.koke.model.entity.sys.user.User;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -26,8 +24,8 @@ public class UserDTO implements Serializable {
     /**
      * 用户id
      */
-    @Null(message = "用户已存在", groups = CreateGroup.class)
-    @NotNull(message = "用户不存在", groups = UpdateGroup.class)
+    @Null(message = "用户已存在")
+    @NotNull(message = "用户不存在")
     private Long userId;
 
     /**
@@ -39,13 +37,13 @@ public class UserDTO implements Serializable {
     /**
      * 密码
      */
-    @NotBlank(message = "密码不能为空", groups = CreateGroup.class)
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**
      * 确认密码
      */
-    @NotBlank(message = "确认密码不能为空", groups = CreateGroup.class)
+    @NotBlank(message = "确认密码不能为空")
     private String confirmPassword;
 
     /**

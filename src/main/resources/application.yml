@@ -10,7 +10,7 @@ spring:
       enabled: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/master_zero?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/wishes_music?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: root
   cache:
@@ -26,14 +26,13 @@ secure:
     urls: # 配置白名单路径
       - /auth/**
       - /unit/tree
-      - /index.html
-      - /config.js
-      - /css/**
-      - /fonts/**
-      - /img/**
-      - /js/**
-      - /favicon.ico
-      - /demo.MP4
+      - /swagger-ui.html/**
+      - /webjars/**
+      - /swagger-resources/**
+      - /null/**
+      - /v2/**
+      - /csrf/**
+      - /doc.html/**
 dictionaries:
   password: 123456
   fuel-oil: 01-02-03-04-05-06-07

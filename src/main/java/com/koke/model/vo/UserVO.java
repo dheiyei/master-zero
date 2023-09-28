@@ -1,6 +1,6 @@
 package com.koke.model.vo;
 
-import com.koke.model.entity.user.User;
+import com.koke.model.entity.sys.user.User;
 import lombok.Builder;
 import lombok.Data;
 import lombok.With;

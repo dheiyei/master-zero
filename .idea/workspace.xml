@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4e77ab7-6d21-422e-8ecf-7dafba3b83e0" name="Changes" comment="重新更新" />
+    <list default="true" id="f4e77ab7-6d21-422e-8ecf-7dafba3b83e0" name="Changes" comment="重新更新9-28">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -36,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WishesMusic/wishes-music" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15222222" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -64,6 +66,8 @@
       <updated>1683710689749</updated>
       <workItem from="1683710690963" duration="1380000" />
       <workItem from="1695911482330" duration="699000" />
+      <workItem from="1695912302027" duration="733000" />
+      <workItem from="1695913295283" duration="29000" />
     </task>
     <task id="LOCAL-00001" summary="重新更新">
       <created>1683711450729</created>
@@ -79,7 +83,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683712131011</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="重新更新9-28">
+      <created>1695912393290</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1695912393290</updated>
+    </task>
+    <task id="LOCAL-00004" summary="重新更新9-28">
+      <created>1695912421894</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695912421894</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,7 +117,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="重新更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="重新更新" />
+    <MESSAGE value="重新更新9-28" />
+    <option name="LAST_COMMIT_MESSAGE" value="重新更新9-28" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

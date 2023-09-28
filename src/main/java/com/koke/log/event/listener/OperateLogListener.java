@@ -1,8 +1,8 @@
 package com.koke.log.event.listener;
 
 import com.koke.log.event.OperateLogEvent;
-import com.koke.model.entity.OperateLog;
-import com.koke.service.inter.OperateLogService;
+import com.koke.model.entity.sys.OperateLog;
+import com.koke.service.inter.sys.OperateLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;

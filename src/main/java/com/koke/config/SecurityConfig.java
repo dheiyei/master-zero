@@ -1,6 +1,6 @@
 package com.koke.config;
 
-import com.koke.filter.JwtFilter;
+import com.koke.config.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,7 +1,7 @@
 package com.koke.exception;
 
 import com.koke.constant.Status;
-import com.koke.model.ResultInfo;
+import com.koke.model.entity.common.ResultInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -16,6 +16,10 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import java.util.Map;
 
+/**
+ * 自定义异常类
+ * @author koke
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

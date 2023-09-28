@@ -1,9 +1,9 @@
 package com.koke.aspect;
 
-import com.koke.annotation.SysOperateLog;
+import com.koke.aspect.annotation.SysOperateLog;
 import com.koke.constant.LogState;
 import com.koke.log.event.OperateLogEvent;
-import com.koke.model.entity.OperateLog;
+import com.koke.model.entity.sys.OperateLog;
 import com.koke.utils.LogUtil;
 import com.koke.utils.SpringContextHolder;
 import lombok.SneakyThrows;
@@ -15,7 +15,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class OperateLogAspect {
 
-    @Pointcut("@annotation(com.koke.annotation.SysOperateLog)")
+    @Pointcut("@annotation(com.koke.aspect.annotation.SysOperateLog)")
     public void pointcut() {
     }
 

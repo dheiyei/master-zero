@@ -1,7 +1,7 @@
 package com.koke.model.dto;
 
-import com.koke.model.UserPrincipal;
-import com.koke.model.entity.role.Role;
+import com.koke.model.entity.common.UserPrincipal;
+import com.koke.model.entity.sys.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

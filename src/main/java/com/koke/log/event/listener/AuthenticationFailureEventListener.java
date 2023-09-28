@@ -3,7 +3,7 @@ package com.koke.log.event.listener;
 import com.koke.constant.LogState;
 import com.koke.constant.Status;
 import com.koke.log.event.OperateLogEvent;
-import com.koke.model.entity.OperateLog;
+import com.koke.model.entity.sys.OperateLog;
 import com.koke.utils.LogUtil;
 import com.koke.utils.SpringContextHolder;
 import org.springframework.context.ApplicationListener;

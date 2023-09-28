@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koke.mapper.dict.DictItemMapper">
 
-    <resultMap id="DictItemResultMap" type="com.koke.model.entity.dict.DictItem">
+    <resultMap id="DictItemResultMap" type="com.koke.model.entity.sys.dict.DictItem">
         <result property="dictItemId" column="dict_item_id"/>
         <result property="dictId" column="dict_id"/>
         <result property="dictLabel" column="dict_label"/>

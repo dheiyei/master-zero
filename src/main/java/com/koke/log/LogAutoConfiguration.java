@@ -2,7 +2,7 @@ package com.koke.log;
 
 import com.koke.aspect.OperateLogAspect;
 import com.koke.log.event.listener.OperateLogListener;
-import com.koke.service.inter.OperateLogService;
+import com.koke.service.inter.sys.OperateLogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;

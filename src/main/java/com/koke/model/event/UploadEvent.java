@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.io.InputStream;
 
+/**
+ * @author 更新事件
+ */
 @Data
 public class UploadEvent {
 
