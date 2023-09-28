@@ -47,10 +47,17 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.ReportingSystemApplication">
     <configuration name="ReportingSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="master-zero" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.koke.ReportingSystemApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WishesMusicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="master-zero" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.koke.WishesMusicApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
