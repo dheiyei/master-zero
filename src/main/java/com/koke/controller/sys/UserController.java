@@ -12,10 +12,11 @@ import com.koke.model.vo.UserVO;
 import com.koke.service.inter.sys.user.UserRoleService;
 import com.koke.service.inter.sys.user.UserService;
 import com.koke.utils.SecurityUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,9 +24,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author 用户登录控制层
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/admin/user")
+@Api(tags = "用户登录")
 public class UserController {
 
     private final UserService userService;
@@ -33,12 +38,14 @@ public class UserController {
 
     @EnablePage
     @GetMapping
+    @ApiOperation(value = "获取用户列表")
     public ResultInfo<List<User>> getUsers(User user) {
         List<User> users = userService.selectUsers(user);
         return ResultInfo.success(users);
     }
 
     @GetMapping("/{userId}")
+    @ApiOperation(value = "根据id获取用户信息")
     public ResultInfo<UserVO> getUserById(@PathVariable("userId") Long userId) {
         List<Long> roleIds = userRoleService.selectUserRoleByUserId(userId).stream().map(UserRole::getRoleId).collect(Collectors.toList());
         UserVO userVO = Optional.ofNullable(userService.selectUserById(userId))
@@ -48,6 +55,7 @@ public class UserController {
     }
 
     @PostMapping
+    @ApiOperation(value = "新增用户信息")
     public ResultInfo<Void> createUser(@RequestBody UserDTO userDTO) {
         userService.createUser(userDTO);
         return ResultInfo.success();
@@ -56,56 +64,37 @@ public class UserController {
     //todo:需要完善修改用户缓存清除
     @CacheEvict(value = CommonConstants.CACHE_PREFIX_ADMIN_USER_MENU, allEntries = true)
     @PutMapping
-    public ResultInfo<Void> updateUser(@RequestBody UserDTO   userDTO) {
+    @ApiOperation(value = "根据id更新用户信息")
+    public ResultInfo<Void> updateUser(@RequestBody UserDTO userDTO) {
         userService.updateUser(userDTO);
         return ResultInfo.success();
     }
 
-    /**
-     * 个人中心--修改密码
-     *
-     * @param updatePasswordDTO
-     * @return
-     */
     @PutMapping("/updatePassword")
+    @ApiOperation(value = "修改密码")
     public ResultInfo<Void> updatePassword(@Valid @RequestBody UpdatePasswordDTO updatePasswordDTO) {
         userService.updatePassword(updatePasswordDTO);
         return ResultInfo.success();
     }
 
     @DeleteMapping("/{userIds}")
+    @ApiOperation(value = "根据id删除用户信息")
     public ResultInfo<Void> deleteUsersByIds(@PathVariable("userIds") List<Long> userIds) {
         userService.deleteUsersByIds(userIds);
         return ResultInfo.success();
     }
 
     @PutMapping("/userRole/{key}")
+    @ApiOperation(value = "更具Key修改当前用户的权限")
     public ResultInfo<Void> updateUserRole(@PathVariable("key") String key) {
         userService.updateUserRole(key);
         return ResultInfo.success();
     }
 
-    /**
-     * 获取登录用户信息
-     *
-     * @return
-     */
     @GetMapping("/userInfo")
+    @ApiOperation(value = "获取当前用户的数据")
     public ResultInfo<CacheUserDTO> getUserInfo() {
         CacheUserDTO loginUser = SecurityUtil.getLoginUser();
         return ResultInfo.success(loginUser);
     }
-
-//    /**
-//     * 审批用户
-//     *
-//     * @param userApproveDTO
-//     * @return
-//     */
-//    @PostMapping("/approve")
-//    public ResultInfo<Void> approveUsers(@RequestBody UserApproveDTO userApproveDTO) {
-//        userService.approveUsers(userApproveDTO);
-//        return ResultInfo.success();
-//    }
-
 }

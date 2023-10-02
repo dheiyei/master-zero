@@ -20,6 +20,10 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+/**
+ * Redis 配置文件
+ * @author koke
+ */
 @EnableConfigurationProperties(CacheProperties.class)
 @EnableCaching
 @Configuration

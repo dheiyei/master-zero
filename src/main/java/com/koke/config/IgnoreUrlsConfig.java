@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 网关白名单配置
+ * @author koke
  */
 @Data
 @Component

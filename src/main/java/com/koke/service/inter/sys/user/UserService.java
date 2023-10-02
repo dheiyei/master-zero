@@ -19,6 +19,6 @@ public interface UserService {
     void deleteUsersByIds(List<Long> userIds);
 
     void updateUserRole(String key);
-//    void approveUsers(UserApproveDTO userApproveDTO);
+
     void updatePassword(UpdatePasswordDTO updatePasswordDTO);
 }

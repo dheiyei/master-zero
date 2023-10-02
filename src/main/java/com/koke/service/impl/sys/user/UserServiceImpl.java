@@ -35,8 +35,7 @@ public class UserServiceImpl implements UserService {
     private final UserRoleMapper userRoleMapper;
     @Override
     public List<User> selectUsers(User user) {
-        List<User> users = userMapper.selectUsers(user);
-        return users;
+        return userMapper.selectUsers(user);
     }
 
     @Override
@@ -104,22 +103,8 @@ public class UserServiceImpl implements UserService {
         userMapper.updatePassword(userId, password);
     }
 
-//    @Transactional
-//    @Override
-//    public void approveUsers(UserApproveDTO userApproveDTO) {
-//        List<Long> userIds = userApproveDTO.getUserIds();
-//        for (Long userId : userIds) {
-//            User user = userMapper.selectUserById(userId);
-//            Assert.isTrue(!user.isApproved(), "用户已审批，请选择其他用户");
-//            user.setEnabled(userApproveDTO.isEnable());
-//            user.setApproved(true);
-//            userMapper.updateUser(UserDTO.fromUser.apply(user));
-//        }
-//    }
-
     /**
      * 校验用户名是否唯一
-     *
      * @param userDTO
      * @return
      */

@@ -1,6 +1,8 @@
 package com.koke.model.vo;
 
 import com.koke.model.entity.sys.user.User;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.With;
@@ -10,51 +12,40 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * 用户视图对象类
+ * @author koke
+ */
 @With
 @Builder
 @Data
+@ApiModel(description= "用户视图对象")
 public class UserVO implements Serializable {
 
     private static final long serialVersionUID = 7816183907564882080L;
 
-    /**
-     * 用户id
-     */
+    @ApiModelProperty(value ="唯一标识",example = "0")
     private Long userId;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty(value ="用户名")
     private String username;
 
-    /**
-     * 昵称
-     */
+    @ApiModelProperty(value ="昵称")
     private String nickname;
 
-    /**
-     * 是否可用
-     */
+    @ApiModelProperty(value ="是否可用")
     private boolean enabled;
 
-    /**
-     * 是否审批
-     */
+    @ApiModelProperty(value ="是否审批")
     private boolean approved;
 
-    /**
-     * 创建时间
-     */
+    @ApiModelProperty(value ="创建时间")
     private LocalDateTime createTime;
 
-    /**
-     * 修改时间
-     */
+    @ApiModelProperty(value ="修改时间")
     private LocalDateTime updateTime;
 
-    /**
-     * 角色 id 列表
-     */
+    @ApiModelProperty(value ="角色 id 列表")
     private List<Long> roleIds;
 
     /**

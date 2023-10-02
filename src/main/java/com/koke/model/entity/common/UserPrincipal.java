@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.koke.model.entity.sys.role.Role;
 import com.koke.model.entity.sys.user.User;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,56 +20,43 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * 当前用户对象
+ * @author koke
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
+@ApiModel(description= "当前用户类")
 public class UserPrincipal implements UserDetails {
 
-    /**
-     * 用户id
-     */
+    @ApiModelProperty(value ="唯一标识",example = "0")
     private Long userId;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty(value ="用户名")
     private String username;
 
-    /**
-     * 密码
-     */
     @JsonIgnore
+    @ApiModelProperty(value ="密码")
     private String password;
 
-    /**
-     * 昵称
-     */
+    @ApiModelProperty(value ="昵称")
     private String nickname;
 
-    /**
-     * 角色列表
-     */
+    @ApiModelProperty(value ="角色列表")
     private List<Role> roles;
 
-    /**
-     * 权限列表
-     */
+    @ApiModelProperty(value ="权限列表")
     private Collection<? extends GrantedAuthority> authorities;
 
-    /**
-     * 是否可用
-     */
+    @ApiModelProperty(value ="是否可用")
     private boolean enabled;
 
-    /**
-     * 数据权限类型
-     */
+    @ApiModelProperty(value ="数据权限类型")
     private String dataScopeType;
 
-    /**
-     * 数据权限值
-     */
+    @ApiModelProperty(value ="数据权限值")
     private List<Long> dataScopeValues;
 
     @Override

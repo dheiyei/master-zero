@@ -12,6 +12,9 @@ import java.io.IOException;
 
 import static javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED;
 
+/**
+ * @author koke
+ */
 @RequiredArgsConstructor
 @Component
 public class FilterExceptionHandler {

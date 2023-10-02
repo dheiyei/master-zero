@@ -1,5 +1,7 @@
 package com.koke.model.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -7,41 +9,34 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 角色请求类
+ * @author koke
+ */
 @Data
+@ApiModel(description= "角色请求对象")
 public class RoleDTO implements Serializable {
 
     private static final long serialVersionUID = -1517362736548499927L;
 
-    /**
-     * 角色id
-     */
+    @ApiModelProperty(value ="唯一ID",example = "0")
     private Long roleId;
 
-    /**
-     * 角色标识
-     */
     @NotBlank
     @Pattern(regexp = "^[_a-zA-Z]+$", message = "角色权限标识只能输入英文和下划线")
+    @ApiModelProperty(value ="角色标识")
     private String roleKey;
 
-    /**
-     * 角色名
-     */
+    @ApiModelProperty(value ="角色名")
     private String roleName;
 
-    /**
-     * 角色描述
-     */
+    @ApiModelProperty(value ="角色描述")
     private String description;
 
-    /**
-     * 数据范围
-     */
+    @ApiModelProperty(value ="数据范围")
     private String dataScope;
 
-    /**
-     * 部门id列表
-     */
+    @ApiModelProperty(value ="部门id列表")
     private List<Long> departmentIds;
 
 }

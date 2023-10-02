@@ -17,16 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Configuration // 标明是配置类
-@EnableSwagger2 //开启swagger功能
+/**
+ * Swagger在线文档配置
+ * @author koke
+ */
+@Configuration
+@EnableSwagger2
 @EnableKnife4j
 public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
-        ParameterBuilder tokenPar = new ParameterBuilder();
-        List<Parameter> pars = new ArrayList<>();
-        tokenPar.name("Authorization").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-        pars.add(tokenPar.build());
+//        ParameterBuilder tokenPar = new ParameterBuilder();
+//        List<Parameter> pars = new ArrayList<>();
+//        tokenPar.name("Authorization").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+//        pars.add(tokenPar.build());
 
         // DocumentationType.SWAGGER_2 固定的，代表swagger2
         return new Docket(DocumentationType.SWAGGER_2)
@@ -40,7 +44,7 @@ public class SwaggerConfig {
                 // 选择所有的API,如果你想只为部分API生成文档，可以配置这里
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(pars)
+//                .globalOperationParameters(pars)
                 .apiInfo(apiInfo());
 
     }
@@ -51,8 +55,8 @@ public class SwaggerConfig {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("海军能源信息综合管理系统") //  可以用来自定义API的主标题
-                .description("海军能源信息综合管理系统API管理") // 可以用来描述整体的API
+                .title("Koke底层系统") //  可以用来自定义API的主标题
+                .description("Koke底层系统API管理") // 可以用来描述整体的API
                 .termsOfServiceUrl("127.0.0.1") // 用于定义服务的域名
                 .version("1.0") // 可以用来定义版本。
                 .build();

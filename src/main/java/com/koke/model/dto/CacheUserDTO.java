@@ -2,6 +2,8 @@ package com.koke.model.dto;
 
 import com.koke.model.entity.common.UserPrincipal;
 import com.koke.model.entity.sys.role.Role;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,43 +15,35 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * 校验用户请求类
+ * @author koke
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
+@ApiModel(description= "校验用户请求对象")
 public class CacheUserDTO implements Serializable {
 
     private static final long serialVersionUID = -7498232750103952522L;
 
-    /**
-     * 用户id
-     */
+    @ApiModelProperty(value ="用户id",example = "0")
     private Long userId;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty(value ="用户名")
     private String username;
 
-    /**
-     * 昵称
-     */
+    @ApiModelProperty(value ="昵称")
     private String nickname;
 
-    /**
-     * 角色列表
-     */
+    @ApiModelProperty(value ="角色列表")
     private List<Role> roles;
 
-    /**
-     * 权限列表
-     */
+    @ApiModelProperty(value ="权限列表")
     private Set<String> authorities;
 
-
-    /**
-     * 是否可用
-     */
+    @ApiModelProperty(value ="是否可用")
     private boolean enabled;
 
     /**

@@ -1,5 +1,9 @@
 package com.koke.constant;
 
+/**
+ * 系统字段
+ * @author koke
+ */
 public interface Constants {
 
     /**

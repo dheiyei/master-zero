@@ -2,38 +2,34 @@ package com.koke.model.entity.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.koke.constant.Status;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 
 /**
- * 公共返回对象
+ * 公共返回类
+ * @author koke
  */
 @Getter
 @Setter
+@ApiModel(description= "公共返回对象")
 public class ResultInfo<T> implements Serializable {
 
     private static final long serialVersionUID = 4297837488970680869L;
 
-    /**
-     * 响应状态码
-     */
+    @ApiModelProperty(value ="编号",example = "0")
     private Integer code;
 
-    /**
-     * 提示消息
-     */
+    @ApiModelProperty(value ="提示消息")
     private String message;
 
-    /**
-     * 响应数据
-     */
+    @ApiModelProperty(value ="响应数据")
     private T data;
 
-    /**
-     * 总记录数
-     */
+    @ApiModelProperty(value ="总记录数",example = "0")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long total;
 
@@ -44,8 +40,7 @@ public class ResultInfo<T> implements Serializable {
      * @return
      */
     public static <T> ResultInfo<T> success() {
-        ResultInfo<T> resultInfo = build(Status.OK.getCode(), Status.OK.getMessage(), null);
-        return resultInfo;
+        return build(Status.OK.getCode(), Status.OK.getMessage(), null);
     }
 
     /**
@@ -56,13 +51,11 @@ public class ResultInfo<T> implements Serializable {
      * @return
      */
     public static <T> ResultInfo<T> success(T data) {
-        ResultInfo<T> resultInfo = build(Status.OK.getCode(), Status.OK.getMessage(), data);
-        return resultInfo;
+        return build(Status.OK.getCode(), Status.OK.getMessage(), data);
     }
 
     public static <T> ResultInfo<T> success(String message, T data) {
-        ResultInfo<T> resultInfo = build(Status.OK.getCode(), message, data);
-        return resultInfo;
+        return build(Status.OK.getCode(), message, data);
     }
 
     /**
@@ -72,8 +65,7 @@ public class ResultInfo<T> implements Serializable {
      * @return
      */
     public static <T> ResultInfo<T> error() {
-        ResultInfo<T> resultInfo = buildError(Status.INTERNAL_SERVER_ERROR.getCode(), Status.INTERNAL_SERVER_ERROR.getMessage(), null);
-        return resultInfo;
+        return buildError(Status.INTERNAL_SERVER_ERROR.getCode(), Status.INTERNAL_SERVER_ERROR.getMessage(), null);
     }
 
     /**
@@ -84,8 +76,7 @@ public class ResultInfo<T> implements Serializable {
      * @return
      */
     public static <T> ResultInfo<T> error(Status status) {
-        ResultInfo<T> resultInfo = buildError(status.getCode(), status.getMessage(), null);
-        return resultInfo;
+        return buildError(status.getCode(), status.getMessage(), null);
     }
 
     /**
@@ -96,8 +87,7 @@ public class ResultInfo<T> implements Serializable {
      * @return
      */
     public static <T> ResultInfo<T> error(String message) {
-        ResultInfo<T> resultInfo = buildError(Status.INTERNAL_SERVER_ERROR.getCode(), message, null);
-        return resultInfo;
+        return buildError(Status.INTERNAL_SERVER_ERROR.getCode(), message, null);
     }
 
     /**
@@ -109,8 +99,7 @@ public class ResultInfo<T> implements Serializable {
      * @return
      */
     public static <T> ResultInfo<T> error(int errorCode, String message) {
-        ResultInfo<T> resultInfo = buildError(errorCode, message, null);
-        return resultInfo;
+        return buildError(errorCode, message, null);
     }
 
     /**
@@ -122,8 +111,7 @@ public class ResultInfo<T> implements Serializable {
      * @return
      */
     public static <T> ResultInfo<T> error(String message, T data) {
-        ResultInfo<T> resultInfo = buildError(Status.INTERNAL_SERVER_ERROR.getCode(), message, data);
-        return resultInfo;
+        return buildError(Status.INTERNAL_SERVER_ERROR.getCode(), message, data);
     }
 
     /**

@@ -33,6 +33,7 @@ secure:
       - /v2/**
       - /csrf/**
       - /doc.html/**
+      - /favicon.ico
 dictionaries:
   password: 123456
   fuel-oil: 01-02-03-04-05-06-07

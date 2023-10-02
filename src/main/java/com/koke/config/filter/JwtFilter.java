@@ -24,6 +24,10 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * 令牌过滤
+ * @author koke
+ */
 @RequiredArgsConstructor
 @Component
 public class JwtFilter extends OncePerRequestFilter {

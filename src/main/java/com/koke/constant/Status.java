@@ -2,6 +2,10 @@ package com.koke.constant;
 
 import lombok.Getter;
 
+/**
+ * 系统参数
+ * @author koke
+ */
 @Getter
 public enum Status {
 
@@ -71,12 +75,12 @@ public enum Status {
     /**
      * 状态码
      */
-    private Integer code;
+    private final Integer code;
 
     /**
      * 内容
      */
-    private String message;
+    private final String message;
 
     Status(Integer code, String message) {
         this.code = code;
